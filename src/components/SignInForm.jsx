@@ -7,7 +7,7 @@ const FORM_DATA = { email: '', password: '' };
 const VALIDATE_DATA = { isRightEmail: false, isRightPassword: false };
 const MESSAGE_DATA = { email: null, password: null };
 
-const SignUp = () => {
+const SignInForm = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState(FORM_DATA);
   const [isRightForm, setIsRightForm] = useState(VALIDATE_DATA);
@@ -51,33 +51,44 @@ const SignUp = () => {
       }));
     }
   };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor='email'>이메일</label>
-      <input
-        onChange={handleChangeEmail}
-        value={form.email}
-        data-testid='email-input'
-        name='email'
-        type='text'
-        placeholder='이메일을 입력해주세요'
-      />
-      {message.email && <small>{message.email}</small>}
-      <label data-testid='password-input' htmlFor='password'>
-        비밀번호
-      </label>
-      <input
-        onChange={handleChangePassword}
-        value={form.password}
-        minLength={8}
-        data-testid='signup-button'
-        name='password'
-        type='text'
-        placeholder='비밀번호를 8자리 이상 입력해주세요'
-      />
-      {message.password && <small>{message.password}</small>}
+    <form
+      onSubmit={handleSubmit}
+      className='flex flex-col justify-center [&>:not(:last-child)]:mb-3 dark:text-white'
+    >
+      <div className='flex flex-col'>
+        <label htmlFor='email'>이메일</label>
+        <input
+          autoComplete='off'
+          className='border rounded-lg py-3 px-2 dark:bg-zinc-900'
+          onChange={handleChangeEmail}
+          value={form.email}
+          data-testid='email-input'
+          name='email'
+          type='text'
+          placeholder='이메일을 입력해주세요'
+        />
+        {message.email && <small>{message.email}</small>}
+      </div>
+      <div className='flex flex-col'>
+        <label data-testid='password-input' htmlFor='password'>
+          비밀번호
+        </label>
+        <input
+          autoComplete='off'
+          className='border rounded-lg w-full py-3 px-2 dark:bg-zinc-900'
+          onChange={handleChangePassword}
+          value={form.password}
+          minLength={8}
+          data-testid='signup-button'
+          name='password'
+          type='text'
+          placeholder='비밀번호를 8자리 이상 입력해주세요'
+        />
+        {message.password && <small>{message.password}</small>}
+      </div>
       <button
+        className='bg-blue-500 p-3 rounded-lg text-white font-bold self-end cursor-pointer transition-colors duration-100 hover:bg-blue-400'
         disabled={!(isRightForm.isRightEmail && isRightForm.isRightPassword)}
       >
         회원가입
@@ -86,4 +97,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignInForm;
