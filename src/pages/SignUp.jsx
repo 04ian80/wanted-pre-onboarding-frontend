@@ -1,19 +1,46 @@
-import SignInForm from '../components/SignInForm';
+import FormSection from '../components/Form/FormSection';
+import Form from '../components/Form/Form';
+import axios from 'axios';
+import { SIGNUP_URL } from '../config/config';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [error, setError] = useState(null);
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    if (token) navigate('/todo');
+  }, [token, navigate]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(SIGNUP_URL, form)
+      .then((res) => {
+        navigate('/signin');
+      })
+      .catch((err) => {
+        console.error(err);
+        setTimeout(() => {
+          setError('❗️ 이메일이나 비밀번호를 잘못 입력하셨어요');
+        }, 4000);
+      });
+  };
+
   return (
-    <div className='flex flex-col justify-center items-center min-h-screen bg-zinc-100 dark:bg-zinc-900'>
-      <div className='flex flex-col justify-between bg-white drop-shadow rounded-lg p-5 w-10/12 max-w-[600px] min-h-[300px] dark:bg-zinc-800'>
-        <div className='text-center font-medium py-3 dark:text-white'>
-          원티드 프론트엔드 인턴쉽에
-          <strong className='text-blue-500'> PRE-온보딩</strong> 하세요!
-        </div>
-        <h1 className='text-center text-3xl text-zinc-800 font-bold mb-2 dark:text-white'>
-          회원가입
-        </h1>
-        <SignInForm />
-      </div>
-    </div>
+    <FormSection title='회원가입'>
+      <Form
+        submitText='회원가입'
+        handleSubmit={handleSubmit}
+        form={form}
+        setForm={setForm}
+        testId='signup'
+        error={error}
+      />
+    </FormSection>
   );
 };
 
