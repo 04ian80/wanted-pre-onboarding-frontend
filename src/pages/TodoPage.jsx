@@ -13,11 +13,11 @@ const TodoPage = () => {
   const [todoLists, setTodoLists] = useState([]);
 
   useEffect(() => {
-    (async () => {
-      await getTodos().then((res) => {
+    getTodos().then((res) => {
+      if (res.data) {
         setTodoLists(res.data);
-      });
-    })();
+      }
+    });
   }, []);
 
   const handleSubmit = async (e) => {
