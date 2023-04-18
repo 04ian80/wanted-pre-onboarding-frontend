@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createTodo, getTodos } from '../apis/todo';
-import TodosForm from '../components/TodoList/TodosForm';
-import TodoAddInput from '../components/TodoList/TodoAddInput';
-import TodoContainer from '../components/TodoList/TodoListHero';
-import TodoLists from '../components/TodoList/TodoLists';
+import TodosForm from '../components/todoList/TodosForm';
+import TodoAddInput from '../components/todoList/TodoAddInput';
+import TodoContainer from '../components/todoList/TodoListHero';
+import TodoLists from '../components/todoList/TodoLists';
+import HomeButton from '../components/base/HomeButton';
 
 const TodoPage = () => {
   const navigate = useNavigate();
@@ -35,12 +36,15 @@ const TodoPage = () => {
   }, [token, navigate]);
 
   return (
-    <TodoContainer>
-      <TodosForm handleSubmit={handleSubmit}>
-        <TodoLists todoLists={todoLists} setTodoLists={setTodoLists} />
-        <TodoAddInput newTodo={newTodo} setNewTodo={setNewTodo} />
-      </TodosForm>
-    </TodoContainer>
+    <>
+      <HomeButton />
+      <TodoContainer>
+        <TodosForm handleSubmit={handleSubmit}>
+          <TodoLists todoLists={todoLists} setTodoLists={setTodoLists} />
+          <TodoAddInput newTodo={newTodo} setNewTodo={setNewTodo} />
+        </TodosForm>
+      </TodoContainer>
+    </>
   );
 };
 
