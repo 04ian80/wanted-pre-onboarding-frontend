@@ -1,8 +1,11 @@
 import { todoClient } from './axios';
 
-export const getTodos = async (setTodoLists) => {
-  return await todoClient.get('/todos');
-  //setstate 밖으로 빼서 useEffect에 감싸기
+export const getTodos = async () => {
+  return await todoClient.get('/todos', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  });
 };
 
 export const createTodo = async (newTodo) => {

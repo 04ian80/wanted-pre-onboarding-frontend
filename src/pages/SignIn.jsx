@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import FormSection from '../components/Form/FormSection';
-import Form from '../components/Form/Form';
-import { SIGNIN_URL } from '../config/config';
+import FormSection from '../components/Auth/FormSection';
+import Form from '../components/Auth/Form';
 import { useNavigate } from 'react-router-dom';
+import { signin } from '../apis/auth';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -17,8 +16,8 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post(SIGNIN_URL, form)
+
+    signin(form)
       .then((res) => {
         localStorage.setItem('token', res.data.access_token);
         navigate('/todo');

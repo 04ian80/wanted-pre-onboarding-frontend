@@ -1,9 +1,8 @@
-import FormSection from '../components/Form/FormSection';
-import Form from '../components/Form/Form';
-import axios from 'axios';
-import { SIGNUP_URL } from '../config/config';
+import FormSection from '../components/Auth/FormSection';
+import Form from '../components/Auth/Form';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { signup } from '../apis/auth';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -17,15 +16,16 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post(SIGNUP_URL, form)
-      .then((res) => {
-        navigate('/signin');
-      })
+
+    signup(form)
+      .then(() => navigate('/signin'))
       .catch((err) => {
         console.error(err);
+        setError('❗️ 이메일이나 비밀번호를 잘못 입력하셨어요');
+      })
+      .finally(() => {
         setTimeout(() => {
-          setError('❗️ 이메일이나 비밀번호를 잘못 입력하셨어요');
+          setError(null);
         }, 4000);
       });
   };
