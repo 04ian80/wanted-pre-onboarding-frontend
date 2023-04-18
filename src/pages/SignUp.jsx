@@ -1,8 +1,9 @@
-import FormSection from '../components/Auth/FormSection';
-import Form from '../components/Auth/Form';
+import FormSection from '../components/auth/FormSection';
+import Form from '../components/auth/Form';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { signup } from '../apis/auth';
+import HomeButton from '../components/base/HomeButton';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -31,16 +32,19 @@ const SignUp = () => {
   };
 
   return (
-    <FormSection title='회원가입'>
-      <Form
-        submitText='회원가입'
-        handleSubmit={handleSubmit}
-        form={form}
-        setForm={setForm}
-        testId='signup'
-        error={error}
-      />
-    </FormSection>
+    <>
+      <HomeButton />
+      <FormSection title='회원가입'>
+        <Form
+          submitText='회원가입'
+          handleSubmit={handleSubmit}
+          form={form}
+          setForm={setForm}
+          testId='signup'
+          error={error}
+        />
+      </FormSection>
+    </>
   );
 };
 

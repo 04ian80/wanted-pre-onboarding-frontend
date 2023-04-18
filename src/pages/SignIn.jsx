@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import FormSection from '../components/Auth/FormSection';
-import Form from '../components/Auth/Form';
+import FormSection from '../components/auth/FormSection';
+import Form from '../components/auth/Form';
 import { useNavigate } from 'react-router-dom';
 import { signin } from '../apis/auth';
+import HomeButton from '../components/base/HomeButton';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -20,6 +21,8 @@ const SignIn = () => {
     signin(form)
       .then((res) => {
         localStorage.setItem('token', res.data.access_token);
+      })
+      .then(() => {
         navigate('/todo');
       })
       .catch((err) => {
@@ -34,16 +37,19 @@ const SignIn = () => {
   };
 
   return (
-    <FormSection title='로그인'>
-      <Form
-        submitText='로그인'
-        handleSubmit={handleSubmit}
-        form={form}
-        setForm={setForm}
-        testId='signin'
-        error={error}
-      />
-    </FormSection>
+    <>
+      <HomeButton />
+      <FormSection title='로그인'>
+        <Form
+          submitText='로그인'
+          handleSubmit={handleSubmit}
+          form={form}
+          setForm={setForm}
+          testId='signin'
+          error={error}
+        />
+      </FormSection>
+    </>
   );
 };
 
