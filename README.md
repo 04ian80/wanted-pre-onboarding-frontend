@@ -2,6 +2,8 @@
 
 원티드 프리온보딩 프론트엔드 4월 과제 레파지토리입니다.
 
+![투두리스트 미리보기](https://user-images.githubusercontent.com/97023321/233080043-55d92aad-edd3-4f6b-931d-22c200f49c7a.png)
+
 `git clone` 후 아래 순서대로 터미널에 명령어를 입력하시면 서버가 실행됩니다.
 
 ```
@@ -11,6 +13,7 @@ git clone https://github.com/04ian80/wanted-pre-onboarding-frontend.git
 npm install
 npm start
 ```
+
 
 ## 배포 링크
 _모든 기능이 동작하는 배포 링크입니다._
