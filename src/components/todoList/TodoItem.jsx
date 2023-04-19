@@ -16,7 +16,7 @@ const TodoItem = ({ todoList, setTodoLists }) => {
   };
 
   const handleConfirmEdit = async () => {
-    await updateTodo(id, editedTodo, isCompleted).then(async (res) => {
+    await updateTodo(id, editedTodo, isCompleted).then(async () => {
       await getTodos().then((res) => {
         setTodoLists(res.data);
       });
@@ -28,8 +28,8 @@ const TodoItem = ({ todoList, setTodoLists }) => {
     setEditedTodo(e.target.value);
   };
 
-  const handleCompleteTodo = async (e) => {
-    await updateTodo(id, todo, !isCompleted).then(async (res) => {
+  const handleCompleteTodo = async () => {
+    await updateTodo(id, todo, !isCompleted).then(async () => {
       await getTodos().then((res) => {
         setTodoLists(res.data);
       });

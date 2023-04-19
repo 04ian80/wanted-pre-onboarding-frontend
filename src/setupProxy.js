@@ -8,7 +8,7 @@ module.exports = function (app) {
     })
   );
   app.use(
-    proxy('/todos', {
+    proxy('/todo', {
       target: 'https://www.pre-onboarding-selection-task.shop',
       changeOrigin: true,
     })
