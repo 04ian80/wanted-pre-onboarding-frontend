@@ -6,6 +6,7 @@ export const todoClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('token')}`,
+    'Access-Control-Allow-Origin': '*',
   },
 });
 
@@ -13,5 +14,6 @@ export const authClient = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
   },
 });
