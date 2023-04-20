@@ -20,7 +20,7 @@ const TodoPage = () => {
           setTodoLists(res.data);
         }
       });
-  }, []);
+  }, [token]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
