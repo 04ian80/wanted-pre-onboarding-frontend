@@ -42,7 +42,7 @@ const TodoItem = ({ todoList, setTodoLists }) => {
         <label
           onClick={() => checkboxRef.current.focus()}
           htmlFor={id}
-          className='w-5 h-5 bg-blue-200 rounded-full cursor-pointer transition-colors duration-100 ease-in hover:bg-blue-400 dark:hover:bg-blue-300 dark:bg-white'
+          className='w-5 h-5 rounded-full cursor-pointer transition-colors duration-100 ease-in hover:bg-blue-400 dark:hover:bg-blue-300 dark:bg-white'
         >
           {isCompleted && <BsCheck />}
         </label>
@@ -65,7 +65,7 @@ const TodoItem = ({ todoList, setTodoLists }) => {
         )}
         {showEdit && (
           <input
-            className='rounded-xl max-w-[190px] ml-2 px-2 bg-zinc-100'
+            className='rounded-xl max-w-[190px] max-sm:max-w-[150px] ml-2 px-2 bg-zinc-100'
             type='text'
             value={editedTodo}
             onChange={handleChangeTodo}
